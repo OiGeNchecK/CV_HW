@@ -1,82 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Form Homework</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Sign Up</title>
 </head>
 <body>
+<h1>Student Sign Up</h1>
+<p>Fill in the form and press Submit.</p>
 
-<h1>Registration Form</h1>
+<form action="http://localhost:8080/students/sign-up" method="post" target="_blank">
+  <p>
+    <label for="fullName">Full name:</label><br />
+    <input id="fullName" name="fullName" type="text" required />
+  </p>
 
-<form action="" method="get">
-  <fieldset>
-    <legend>Personal Information</legend>
+  <p>
+    <label for="email">Email:</label><br />
+    <input id="email" name="email" type="email" required />
+  </p>
 
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" required>
-    <br><br>
+  <p>
+    <label for="password">Password:</label><br />
+    <input id="password" name="password" type="password" required />
+  </p>
 
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" required>
-    <br><br>
+  <p>
+    <label for="age">Age:</label><br />
+    <input id="age" name="age" type="number" min="0" required />
+  </p>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br><br>
+  <p>
+    <label for="dob">Date of birth:</label><br />
+    <input id="dob" name="dob" type="date" required />
+  </p>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br><br>
+  <p>Gender:</p>
+  <p>
+    <input id="genderMale" name="gender" type="radio" value="male" checked />
+    <label for="genderMale">male</label><br />
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" min="1" max="120">
-    <br><br>
-  </fieldset>
+    <input id="genderFemale" name="gender" type="radio" value="female" />
+    <label for="genderFemale">female</label><br />
 
-  <fieldset>
-    <legend>Additional Information</legend>
+    <input id="genderOther" name="gender" type="radio" value="other" />
+    <label for="genderOther">other</label>
+  </p>
 
-    <p>Gender:</p>
-    <input type="radio" id="male" name="gender" value="male">
-    <label for="male">Male</label>
+  <p>Interests:</p>
+  <p>
+    <input id="interestSports" name="interests" type="checkbox" value="sports" />
+    <label for="interestSports">sports</label><br />
 
-    <input type="radio" id="female" name="gender" value="female">
-    <label for="female">Female</label>
+    <input id="interestMusic" name="interests" type="checkbox" value="music" />
+    <label for="interestMusic">music</label><br />
 
-    <input type="radio" id="other" name="gender" value="other">
-    <label for="other">Other</label>
-    <br><br>
+    <input id="interestTravel" name="interests" type="checkbox" value="travel" />
+    <label for="interestTravel">travel</label><br />
 
-    <label for="country">Country:</label>
-    <select id="country" name="country">
-      <option value="germany">Germany</option>
-      <option value="ukraine">Ukraine</option>
-      <option value="romania">Romania</option>
-      <option value="poland">Poland</option>
+    <input id="interestProgramming" name="interests" type="checkbox" value="programming" />
+    <label for="interestProgramming">programming</label>
+  </p>
+
+  <p>
+    <label for="sountry">Country:</label><br />
+    <select id="country" name="country" required>
+      <option value="" selected disabled>Select country</option>
+      <option value="Germany">germany</option>
+      <option value="Ukraine">ukraine</option>
+      <option value="Poland">poland</option>
+      <option value="Canada">canada</option>
+      <option value="USA">usa</option>
     </select>
-    <br><br>
+  </p>
 
-    <p>Skills:</p>
-    <input type="checkbox" id="html" name="skills" value="HTML">
-    <label for="html">HTML</label>
+  <p>
+    <label for="bio">Bio:</label><br />
+    <textarea id="bio" name="bio" rows="4" cols="40" placeholder="Short Bio!"></textarea>
+  </p>
 
-    <input type="checkbox" id="css" name="skills" value="CSS">
-    <label for="css">CSS</label>
+  <input name="userId" type="hidden" value="12345" />
 
-    <input type="checkbox" id="js" name="skills" value="JavaScript">
-    <label for="js">JavaScript</label>
-    <br><br>
-
-    <label for="comment">Comment:</label>
-    <br>
-    <textarea id="comment" name="comment" rows="5" cols="30"></textarea>
-    <br><br>
-  </fieldset>
-
-  <input type="submit" value="Submit">
-  <input type="reset" value="Reset">
+  <p>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </p>
 </form>
-
 </body>
 </html>

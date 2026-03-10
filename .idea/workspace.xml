@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="697a53d8-c89d-4c1c-ae9d-0d9aa15f5f13" name="Changes" comment="CV_HW" />
+    <list default="true" id="697a53d8-c89d-4c1c-ae9d-0d9aa15f5f13" name="Changes" comment="CV_HW_84_2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -54,10 +63,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "cv__homework__viewport__favicon",
@@ -97,7 +109,7 @@
       <workItem from="1772375490783" duration="44000" />
       <workItem from="1772449366296" duration="52000" />
       <workItem from="1772449428291" duration="11000" />
-      <workItem from="1772981240372" duration="610000" />
+      <workItem from="1772981240372" duration="1573000" />
     </task>
     <task id="LOCAL-00001" summary="CV_HW">
       <option name="closed" value="true" />
@@ -155,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772981507864</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="CV_HW_84_2">
+      <option name="closed" value="true" />
+      <created>1772982118181</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772982118181</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,7 +206,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CV_HW" />
-    <option name="LAST_COMMIT_MESSAGE" value="CV_HW" />
+    <MESSAGE value="CV_HW_84_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="CV_HW_84_2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
