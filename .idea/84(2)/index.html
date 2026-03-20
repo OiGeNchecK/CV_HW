@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Sign Up</title>
+</head>
+<body>
+<h1>Student Sign Up</h1>
+<p>Fill in the form and press Submit.</p>
+
+<form action="http://localhost:8080/students/sign-up" method="post" target="_blank">
+  <p>
+    <label for="fullName">Full name:</label><br />
+    <input id="fullName" name="fullName" type="text" required />
+  </p>
+
+  <p>
+    <label for="email">Email:</label><br />
+    <input id="email" name="email" type="email" required />
+  </p>
+
+  <p>
+    <label for="password">Password:</label><br />
+    <input id="password" name="password" type="password" required />
+  </p>
+
+  <p>
+    <label for="age">Age:</label><br />
+    <input id="age" name="age" type="number" min="0" required />
+  </p>
+
+  <p>
+    <label for="dob">Date of birth:</label><br />
+    <input id="dob" name="dob" type="date" required />
+  </p>
+
+  <p>Gender:</p>
+  <p>
+    <input id="genderMale" name="gender" type="radio" value="male" checked />
+    <label for="genderMale">male</label><br />
+
+    <input id="genderFemale" name="gender" type="radio" value="female" />
+    <label for="genderFemale">female</label><br />
+
+    <input id="genderOther" name="gender" type="radio" value="other" />
+    <label for="genderOther">other</label>
+  </p>
+
+  <p>Interests:</p>
+  <p>
+    <input id="interestSports" name="interests" type="checkbox" value="sports" />
+    <label for="interestSports">sports</label><br />
+
+    <input id="interestMusic" name="interests" type="checkbox" value="music" />
+    <label for="interestMusic">music</label><br />
+
+    <input id="interestTravel" name="interests" type="checkbox" value="travel" />
+    <label for="interestTravel">travel</label><br />
+
+    <input id="interestProgramming" name="interests" type="checkbox" value="programming" />
+    <label for="interestProgramming">programming</label>
+  </p>
+
+  <p>
+    <label for="sountry">Country:</label><br />
+    <select id="country" name="country" required>
+      <option value="" selected disabled>Select country</option>
+      <option value="Germany">germany</option>
+      <option value="Ukraine">ukraine</option>
+      <option value="Poland">poland</option>
+      <option value="Canada">canada</option>
+      <option value="USA">usa</option>
+    </select>
+  </p>
+
+  <p>
+    <label for="bio">Bio:</label><br />
+    <textarea id="bio" name="bio" rows="4" cols="40" placeholder="Short Bio!"></textarea>
+  </p>
+
+  <input name="userId" type="hidden" value="12345" />
+
+  <p>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </p>
+</form>
+</body>
+</html>

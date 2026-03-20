@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="697a53d8-c89d-4c1c-ae9d-0d9aa15f5f13" name="Changes" comment="CV_HW" />
+    <list default="true" id="697a53d8-c89d-4c1c-ae9d-0d9aa15f5f13" name="Changes" comment="CV_HW_93">
+      <change afterPath="$PROJECT_DIR$/.idea/JavaScript_94/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/JavaScript_94/Вхід в іТ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/JavaScript_94/іТшка.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="cv_homework" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="cv_homework_viewport_favicon" />
+        <entry key="$PROJECT_DIR$" value="cv_homework_viewport_favicon_3" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OiGeNchecK&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/OiGeNchecK/CV_HW.git&quot;,
+    &quot;accountId&quot;: &quot;a0098044-7ddd-4f91-a69e-782dd3ff5c87&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3ALUype50qNeGFkSFDvDoKF3Hkg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -20,16 +66,24 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "cv__homework",
+    "git-widget-placeholder": "#3 on cv__homework__viewport__favicon__2",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
@@ -51,6 +105,17 @@
       <option name="presentableId" value="Default" />
       <updated>1772371604349</updated>
       <workItem from="1772371605541" duration="165000" />
+      <workItem from="1772371780376" duration="1803000" />
+      <workItem from="1772373648021" duration="130000" />
+      <workItem from="1772373793118" duration="904000" />
+      <workItem from="1772374713864" duration="18000" />
+      <workItem from="1772375490783" duration="44000" />
+      <workItem from="1772449366296" duration="52000" />
+      <workItem from="1772449428291" duration="11000" />
+      <workItem from="1772981240372" duration="1573000" />
+      <workItem from="1773159933308" duration="206000" />
+      <workItem from="1773856124726" duration="2154000" />
+      <workItem from="1774029999217" duration="2036000" />
     </task>
     <task id="LOCAL-00001" summary="CV_HW">
       <option name="closed" value="true" />
@@ -60,7 +125,95 @@
       <option name="project" value="LOCAL" />
       <updated>1772371663669</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772371811854</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772371811854</updated>
+    </task>
+    <task id="LOCAL-00003" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772371857518</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772371857518</updated>
+    </task>
+    <task id="LOCAL-00004" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772372589052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772372589052</updated>
+    </task>
+    <task id="LOCAL-00005" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772372746581</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1772372746581</updated>
+    </task>
+    <task id="LOCAL-00006" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772373062189</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772373062189</updated>
+    </task>
+    <task id="LOCAL-00007" summary="CV_HW">
+      <option name="closed" value="true" />
+      <created>1772981507864</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772981507864</updated>
+    </task>
+    <task id="LOCAL-00008" summary="CV_HW_84_2">
+      <option name="closed" value="true" />
+      <created>1772982118181</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772982118181</updated>
+    </task>
+    <task id="LOCAL-00009" summary="CV_HW_84_2_FiX">
+      <option name="closed" value="true" />
+      <created>1773160135870</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1773160135870</updated>
+    </task>
+    <task id="LOCAL-00010" summary="CV_HW_94">
+      <option name="closed" value="true" />
+      <created>1773857098837</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1773857098837</updated>
+    </task>
+    <task id="LOCAL-00011" summary="CV_HW_94_2">
+      <option name="closed" value="true" />
+      <created>1773857323785</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1773857323785</updated>
+    </task>
+    <task id="LOCAL-00012" summary="CV_HW_93">
+      <option name="closed" value="true" />
+      <created>1774030248704</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1774030248704</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -71,7 +224,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="cv_homework_viewport_favicon_2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -79,6 +244,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CV_HW" />
-    <option name="LAST_COMMIT_MESSAGE" value="CV_HW" />
+    <MESSAGE value="CV_HW_84_2" />
+    <MESSAGE value="CV_HW_84_2_FiX" />
+    <MESSAGE value="CV_HW_94" />
+    <MESSAGE value="CV_HW_94_2" />
+    <MESSAGE value="CV_HW_93" />
+    <option name="LAST_COMMIT_MESSAGE" value="CV_HW_93" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
