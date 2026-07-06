@@ -1,0 +1,465 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier of Taste — Sushi and more…</title>
+<style>
+/*__FONTS__*/
+
+:root{
+  --ink:#0a0908; --ink2:#100e0c; --ink3:#171412;
+  --cream:#f2ece1; --dim:#9d968a;
+  --gold:#d9b57c; --salmon:#f0836c; --leaf:#8fae6e; --cheddar:#f2c14e;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  background:var(--ink);color:var(--cream);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;overflow-x:clip;font-size:16px;line-height:1.5;
+}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+h1,h2,h3{font-weight:300}
+
+/* phone stage: on wide screens the experience stays a centered phone column */
+#stage{max-width:480px;margin:0 auto;position:relative;
+  box-shadow:0 0 120px rgba(0,0,0,.8)}
+@media (min-width:481px){
+  body{background:#050404}
+  body::before{content:"";position:fixed;inset:0;
+    background:radial-gradient(60% 50% at 50% 30%,rgba(217,181,124,.05),transparent 70%);pointer-events:none}
+}
+
+.glass{
+  background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 20px 50px -18px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.label{font-size:10px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.6) 100%)}
+.grain{position:fixed;inset:-100%;width:300%;height:300%;pointer-events:none;z-index:90;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain-shift .9s steps(4) infinite}
+@keyframes grain-shift{0%{transform:translate(0,0)}25%{transform:translate(-2%,3%)}50%{transform:translate(3%,-2%)}75%{transform:translate(-3%,-3%)}100%{transform:translate(2%,2%)}}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}}
+
+/* top bar */
+#bar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;
+  z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;opacity:0;
+  transition:background .5s,box-shadow .5s}
+#bar.scrolled{
+  background:linear-gradient(180deg,rgba(10,9,8,.92) 0%,rgba(10,9,8,.75) 70%,transparent 100%);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#bar .b-name{font-family:var(--serif);font-size:17px;letter-spacing:.16em;text-transform:uppercase}
+#bar .b-name b{color:var(--gold);font-weight:400}
+#bar .order{border-radius:9999px;padding:9px 16px;font-size:10px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:300;background:var(--ink);display:flex;align-items:center;justify-content:center}
+#loader .in{display:flex;flex-direction:column;align-items:center;gap:18px}
+#loader svg{width:84px;height:84px;color:var(--gold)}
+#loader p{font-size:10px;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--dim);opacity:0}
+
+/* hero */
+#hero{position:relative;height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;overflow:hidden;text-align:center;padding:0 20px}
+#hero-canvas{position:absolute;inset:0}
+#hero-canvas canvas{position:absolute;inset:0;width:100%;height:100%}
+#hero-glow{position:absolute;left:50%;top:44%;width:120vmin;height:120vmin;transform:translate(-50%,-50%);
+  border-radius:50%;opacity:.55;
+  background:radial-gradient(circle,rgba(240,131,108,.16) 0%,rgba(217,181,124,.08) 40%,transparent 68%)}
+#hero-mark{width:74px;height:74px;color:var(--gold);opacity:0;margin-bottom:26px}
+#hero h1{font-family:var(--serif);font-size:clamp(44px,13vw,64px);line-height:1.02;
+  letter-spacing:.04em;text-transform:uppercase}
+#hero h1 .line{display:block;overflow:hidden}
+#hero h1 .line span{display:inline-block;transform:translateY(110%)}
+#hero h1 .of{color:var(--gold);font-style:italic;text-transform:none;letter-spacing:.1em;font-size:.62em}
+#hero-tag{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--dim);opacity:0}
+#hero-loc{margin-top:26px;display:inline-flex;gap:8px;align-items:center;border-radius:9999px;
+  padding:8px 18px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream);opacity:0}
+#hero-loc i{width:5px;height:5px;border-radius:50%;background:var(--salmon);display:inline-block}
+#hero-cue{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 22px);left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0}
+#hero-cue .t{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+#hero-cue .rail{height:44px;width:1px;overflow:hidden;background:rgba(242,236,225,.12)}
+#hero-cue .bar{height:100%;width:100%;background:var(--gold);
+  animation:cue 1.8s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+
+/* intro strip */
+#intro{position:relative;padding:110px 24px;text-align:center;background:var(--ink)}
+#intro p.big{font-family:var(--serif);font-size:30px;line-height:1.4;color:var(--cream)}
+#intro p.big em{color:var(--gold)}
+#intro .label{display:block;margin-bottom:22px}
+
+/* signature deck — sticky story cards */
+#deck-head{padding:40px 24px 18px;background:var(--ink)}
+#deck-head h2{font-family:var(--serif);font-size:38px;line-height:1.05}
+.deck-panel{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck-inner{position:relative;width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:0 24px;text-align:center;will-change:transform}
+.deck-bg{position:absolute;inset:0}
+.deck-art{position:relative;width:min(64vw,270px);margin-bottom:8px}
+.deck-art svg{width:100%;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.55))}
+.deck-no{position:absolute;top:calc(env(safe-area-inset-top) + 66px);left:24px;
+  font-family:var(--serif);font-size:60px;color:rgba(242,236,225,.12)}
+.deck-jp{position:absolute;top:calc(env(safe-area-inset-top) + 74px);right:24px;
+  font-size:20px;color:rgba(242,236,225,.22)}
+.deck-name{font-family:var(--serif);font-size:40px;line-height:1.05}
+.deck-desc{margin-top:12px;max-width:300px;font-size:13.5px;line-height:1.65;color:var(--dim)}
+.deck-price{margin-top:20px;display:inline-block;border-radius:9999px;padding:10px 22px;
+  font-family:var(--serif);font-size:22px;color:var(--gold)}
+.deck-panel[data-tint="sunrise"] .deck-bg{background:radial-gradient(110% 80% at 50% 20%,#241410 0%,#160d0b 45%,var(--ink) 80%)}
+.deck-panel[data-tint="pearl"] .deck-bg{background:radial-gradient(110% 80% at 50% 20%,#1d1a15 0%,#12100d 45%,var(--ink) 80%)}
+.deck-panel[data-tint="cheddar"] .deck-bg{background:radial-gradient(110% 80% at 50% 20%,#221a0e 0%,#140f09 45%,var(--ink) 80%)}
+.deck-panel[data-tint="tempura"] .deck-bg{background:radial-gradient(110% 80% at 50% 20%,#20160f 0%,#130d09 45%,var(--ink) 80%)}
+.deck-panel[data-tint="green"] .deck-bg{background:radial-gradient(110% 80% at 50% 20%,#161c10 0%,#0e120a 45%,var(--ink) 80%)}
+.deck-name.sunrise{color:var(--salmon)} .deck-name.pearl{color:var(--cream)}
+.deck-name.cheddar{color:var(--cheddar)} .deck-name.tempura{color:var(--gold)}
+.deck-name.green{color:var(--leaf)}
+
+/* dragon carousel */
+#dragons{position:relative;background:var(--ink2);padding:90px 0 70px;overflow:hidden}
+#dragons .hd{padding:0 24px 26px}
+#dragons h2{font-family:var(--serif);font-size:38px;line-height:1.05}
+#dragons .hint{margin-top:10px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+#drag-rail{display:flex;gap:16px;overflow-x:auto;padding:8px 24px 28px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#drag-rail::-webkit-scrollbar{display:none}
+.dragon{scroll-snap-align:center;flex-shrink:0;width:78vw;max-width:340px;border-radius:26px;
+  padding:26px 24px 28px;position:relative;overflow:hidden}
+.dragon .dj{position:absolute;top:18px;right:20px;font-size:16px;color:rgba(242,236,225,.25)}
+.dragon .art{width:66%;margin:6px auto 4px}
+.dragon .art svg{width:100%;height:auto;filter:drop-shadow(0 20px 34px rgba(0,0,0,.5))}
+.dragon h3{font-family:var(--serif);font-size:27px;margin-top:8px}
+.dragon p{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--dim)}
+.dragon .pr{margin-top:14px;font-family:var(--serif);font-size:20px;color:var(--gold)}
+.dragon.king h3{color:var(--gold)} .dragon.red h3{color:var(--salmon)} .dragon.green h3{color:var(--leaf)}
+
+/* maki menu */
+#maki{background:var(--ink);padding:90px 24px}
+#maki .label{display:block;margin-bottom:10px}
+#maki h2{font-family:var(--serif);font-size:38px;margin-bottom:34px}
+.mrow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  border-top:1px solid rgba(242,236,225,.09);padding:19px 0;opacity:0}
+.mrow:last-of-type{border-bottom:1px solid rgba(242,236,225,.09)}
+.mrow h3{font-family:var(--serif);font-size:23px;font-weight:300}
+.mrow .d{font-size:11.5px;color:var(--dim);margin-top:3px}
+.mrow .p{font-family:var(--serif);font-size:19px;color:rgba(217,181,124,.85);white-space:nowrap;font-variant-numeric:tabular-nums}
+#maki .foot{margin-top:26px;font-size:11px;line-height:1.7;color:var(--dim)}
+#maki .foot b{color:var(--gold);font-weight:600}
+
+/* info */
+#info{background:var(--ink2);padding:90px 24px;position:relative;overflow:hidden}
+#info .cardz{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+.icard{border-radius:22px;padding:22px}
+.icard .k{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--dim);margin-bottom:9px}
+.icard .v{font-family:var(--serif);font-size:21px;line-height:1.35}
+.icard .v small{display:block;font-family:var(--sans);font-size:12px;color:var(--dim);margin-top:5px}
+.icard .v .gold{color:var(--gold)}
+#info h2{font-family:var(--serif);font-size:38px}
+.stars{color:var(--gold);letter-spacing:2px}
+
+/* cta */
+#cta{position:relative;min-height:92svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;overflow:hidden;
+  background:var(--ink);padding:80px 24px calc(env(safe-area-inset-bottom) + 60px)}
+#cta-glow{position:absolute;left:50%;top:45%;width:110vmin;height:110vmin;transform:translate(-50%,-50%);
+  border-radius:50%;opacity:.5;pointer-events:none;
+  background:radial-gradient(circle,rgba(217,181,124,.17) 0%,rgba(240,131,108,.07) 45%,transparent 70%)}
+#cta h2{font-family:var(--serif);font-size:clamp(40px,11.5vw,54px);line-height:1.06;position:relative}
+#cta h2 em{color:var(--gold)}
+#cta .sub{margin-top:18px;max-width:300px;font-size:13.5px;line-height:1.65;color:var(--dim);position:relative}
+#cta-btn{margin-top:40px;display:inline-flex;align-items:center;gap:12px;border-radius:9999px;
+  padding:18px 34px;position:relative}
+#cta-btn .t{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase}
+#cta-btn .a{color:var(--gold);font-size:17px}
+#cta .links{margin-top:34px;display:flex;gap:22px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);position:relative}
+#cta .links a{border-bottom:1px solid rgba(242,236,225,.15);padding-bottom:3px}
+#cta .fine{margin-top:44px;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(157,150,138,.55);position:relative;line-height:2}
+</style>
+
+<div id="stage">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="a-salmon" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ff9d7e"/><stop offset="55%" stop-color="#f0724f"/><stop offset="100%" stop-color="#d95a3c"/>
+  </linearGradient>
+  <radialGradient id="a-rice" cx="0.5" cy="0.42" r="0.65">
+    <stop offset="0%" stop-color="#fbf6ea"/><stop offset="100%" stop-color="#ddd2ba"/>
+  </radialGradient>
+  <linearGradient id="a-avocado" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b9d18a"/><stop offset="100%" stop-color="#7e9e55"/>
+  </linearGradient>
+  <linearGradient id="a-cheddar" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ffd977"/><stop offset="100%" stop-color="#e8a94e"/>
+  </linearGradient>
+  <linearGradient id="a-tempura" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#e8c48e"/><stop offset="100%" stop-color="#c49355"/>
+  </linearGradient>
+  <linearGradient id="a-tuna" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#e05a6d"/><stop offset="100%" stop-color="#8e2436"/>
+  </linearGradient>
+  <radialGradient id="a-pearl" cx="0.4" cy="0.35" r="0.8">
+    <stop offset="0%" stop-color="#fdfaf3"/><stop offset="100%" stop-color="#cfc4ac"/>
+  </radialGradient>
+</defs></svg>
+
+<div id="loader">
+  <div class="in">
+    <svg viewBox="0 0 200 200"><path id="loader-path" d="M154 55 A 72 72 0 1 0 168 118" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
+    <p id="loader-tag">Atelier of Taste</p>
+  </div>
+</div>
+
+<header id="bar">
+  <span class="b-name">Atelier <b>of</b> Taste</span>
+  <a class="order glass" href="https://atelier-of-taste.de/" target="_blank" rel="noopener">Bestellen</a>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-glow"></div>
+  <div id="hero-canvas"></div>
+  <svg id="hero-mark" viewBox="0 0 200 200"><path d="M154 55 A 72 72 0 1 0 168 118" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg>
+  <h1>
+    <span class="line"><span>Atelier</span></span>
+    <span class="line"><span class="of">of</span></span>
+    <span class="line"><span>Taste</span></span>
+  </h1>
+  <p id="hero-tag">Sushi and more&hellip;</p>
+  <span id="hero-loc" class="glass"><i></i>Köln &middot; Rodenkirchen</span>
+  <div id="hero-cue"><span class="t">Scroll</span><div class="rail"><div class="bar"></div></div></div>
+  <div class="vignette"></div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <span class="label">Unsere Philosophie</span>
+  <p class="big">Qualität ohne Kompromisse — <em>frische Zutaten</em>, schnelle Lieferung und Sushi wie in den <em>besten Häusern</em> der Stadt.</p>
+</section>
+
+<!-- SIGNATURE DECK -->
+<div id="deck-head">
+  <span class="label">Signature Rolls</span>
+  <h2>Fünf Kreationen,<br>ein Abend</h2>
+</div>
+<div id="deck">
+
+  <section class="deck-panel" data-tint="sunrise">
+    <div class="deck-bg"></div>
+    <div class="deck-inner">
+      <span class="deck-no">01</span><span class="deck-jp">日の出</span>
+      <div class="deck-art"><svg viewBox="0 0 220 190">
+        <ellipse cx="110" cy="164" rx="88" ry="14" fill="#000" opacity=".35"/>
+        <circle cx="110" cy="95" r="72" fill="url(#a-rice)"/>
+        <circle cx="110" cy="95" r="46" fill="#171a14"/>
+        <circle cx="110" cy="95" r="40" fill="url(#a-rice)"/>
+        <circle cx="110" cy="95" r="19" fill="url(#a-salmon)"/>
+        <path d="M45 66 A 72 72 0 0 1 175 66 L 158 80 A 50 50 0 0 0 62 80 Z" fill="url(#a-salmon)"/>
+        <circle cx="88" cy="52" r="4" fill="#ffe08a"/><circle cx="118" cy="44" r="3.4" fill="#ffe08a"/><circle cx="142" cy="55" r="3.8" fill="#ffe08a"/>
+        <path d="M60 120 q 50 26 100 0" stroke="#c9722f" stroke-width="4" fill="none" opacity=".8" stroke-linecap="round"/>
+      </svg></div>
+      <h3 class="deck-name sunrise">Tokyo Sunrise</h3>
+      <p class="deck-desc">Lachs auf geflämmtem Reis, Masago und ein Hauch Yuzu — der Sonnenaufgang über Rodenkirchen.</p>
+      <span class="deck-price glass">€ 15,50</span>
+    </div>
+  </section>
+
+  <section class="deck-panel" data-tint="pearl">
+    <div class="deck-bg"></div>
+    <div class="deck-inner">
+      <span class="deck-no">02</span><span class="deck-jp">真珠</span>
+      <div class="deck-art"><svg viewBox="0 0 220 190">
+        <ellipse cx="110" cy="164" rx="88" ry="14" fill="#000" opacity=".35"/>
+        <circle cx="110" cy="95" r="72" fill="url(#a-pearl)"/>
+        <circle cx="110" cy="95" r="47" fill="#20261a"/>
+        <circle cx="110" cy="95" r="41" fill="url(#a-rice)"/>
+        <circle cx="110" cy="95" r="18" fill="url(#a-avocado)"/>
+        <circle cx="76" cy="58" r="7" fill="#fdfaf3" opacity=".95"/><circle cx="98" cy="46" r="5.6" fill="#fdfaf3" opacity=".9"/>
+        <circle cx="124" cy="44" r="6.4" fill="#fdfaf3" opacity=".95"/><circle cx="146" cy="56" r="5" fill="#fdfaf3" opacity=".9"/>
+        <circle cx="74" cy="56" r="2.2" fill="#fff"/><circle cx="122" cy="42" r="2.2" fill="#fff"/>
+      </svg></div>
+      <h3 class="deck-name pearl">Pearfection</h3>
+      <p class="deck-desc">Zarte Perlen aus Birne und Frischkäse auf cremiger Avocado — süß trifft umami, perfekt austariert.</p>
+      <span class="deck-price glass">€ 14,50</span>
+    </div>
+  </section>
+
+  <section class="deck-panel" data-tint="cheddar">
+    <div class="deck-bg"></div>
+    <div class="deck-inner">
+      <span class="deck-no">03</span><span class="deck-jp">夢</span>
+      <div class="deck-art"><svg viewBox="0 0 220 190">
+        <ellipse cx="110" cy="164" rx="88" ry="14" fill="#000" opacity=".35"/>
+        <circle cx="110" cy="95" r="72" fill="url(#a-rice)"/>
+        <path d="M42 78 A 72 72 0 0 1 178 78 L 178 96 Q 110 74 42 96 Z" fill="url(#a-cheddar)"/>
+        <path d="M52 92 q 8 12 0 20 M84 86 q 8 12 0 20 M116 84 q 8 12 0 20 M148 88 q 8 12 0 20" stroke="#e8a94e" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>
+        <circle cx="110" cy="100" r="45" fill="#171a14"/>
+        <circle cx="110" cy="100" r="39" fill="url(#a-rice)"/>
+        <circle cx="110" cy="100" r="17" fill="url(#a-salmon)"/>
+      </svg></div>
+      <h3 class="deck-name cheddar">Cheddar Dream</h3>
+      <p class="deck-desc">Geschmolzener Cheddar über Lachs-Uramaki, kurz überbacken — unser meistbestellter Guilty Pleasure.</p>
+      <span class="deck-price glass">€ 13,90</span>
+    </div>
+  </section>
+
+  <section class="deck-panel" data-tint="tempura">
+    <div class="deck-bg"></div>
+    <div class="deck-inner">
+      <span class="deck-no">04</span><span class="deck-jp">天ぷら</span>
+      <div class="deck-art"><svg viewBox="0 0 220 190">
+        <ellipse cx="110" cy="164" rx="88" ry="14" fill="#000" opacity=".35"/>
+        <circle cx="110" cy="95" r="74" fill="url(#a-tempura)"/>
+        <circle cx="70" cy="60" r="6" fill="#f3d9a8"/><circle cx="150" cy="58" r="5" fill="#f3d9a8"/>
+        <circle cx="46" cy="102" r="5" fill="#f3d9a8"/><circle cx="172" cy="104" r="6" fill="#f3d9a8"/>
+        <circle cx="92" cy="38" r="4" fill="#f3d9a8"/><circle cx="128" cy="152" r="5" fill="#f3d9a8"/>
+        <circle cx="110" cy="95" r="52" fill="#20261a"/>
+        <circle cx="110" cy="95" r="45" fill="url(#a-rice)"/>
+        <circle cx="110" cy="95" r="20" fill="#f2b04e"/>
+        <path d="M58 128 q 52 22 104 0" stroke="#8a5a24" stroke-width="4" fill="none" opacity=".7" stroke-linecap="round"/>
+      </svg></div>
+      <h3 class="deck-name tempura">Hot Tempura</h3>
+      <p class="deck-desc">Knusprig frittierte Rolle mit Garnele, Spicy-Mayo und Unagi-Sauce — außen heiß, innen seidig.</p>
+      <span class="deck-price glass">€ 14,90</span>
+    </div>
+  </section>
+
+  <section class="deck-panel" data-tint="green">
+    <div class="deck-bg"></div>
+    <div class="deck-inner">
+      <span class="deck-no">05</span><span class="deck-jp">緑</span>
+      <div class="deck-art"><svg viewBox="0 0 220 190">
+        <ellipse cx="110" cy="164" rx="88" ry="14" fill="#000" opacity=".35"/>
+        <circle cx="110" cy="95" r="72" fill="url(#a-rice)"/>
+        <path d="M40 84 A 72 72 0 0 1 180 84 L 164 96 A 55 55 0 0 0 56 96 Z" fill="url(#a-avocado)"/>
+        <path d="M52 78 A 62 62 0 0 1 168 78" stroke="#d7e6b8" stroke-width="3" fill="none" opacity=".6"/>
+        <circle cx="110" cy="98" r="44" fill="#20261a"/>
+        <circle cx="110" cy="98" r="38" fill="url(#a-rice)"/>
+        <circle cx="110" cy="98" r="16" fill="url(#a-avocado)"/>
+        <ellipse cx="110" cy="152" rx="26" ry="6" fill="#9aa86e" opacity=".8"/>
+      </svg></div>
+      <h3 class="deck-name green">Green Spirit</h3>
+      <p class="deck-desc">Avocado doppelt gedacht — als Mantel und als Herz. Vegan, frisch, mit Sesam und Ponzu.</p>
+      <span class="deck-price glass">€ 13,50</span>
+    </div>
+  </section>
+</div>
+
+<!-- DRAGONS -->
+<section id="dragons">
+  <div class="hd">
+    <span class="label">Die Trilogie</span>
+    <h2>Dragon Rolls</h2>
+    <p class="hint">&larr; Wischen zum Entdecken &rarr;</p>
+  </div>
+  <div id="drag-rail">
+    <article class="dragon glass king">
+      <span class="dj">王</span>
+      <div class="art"><svg viewBox="0 0 200 150">
+        <ellipse cx="100" cy="132" rx="80" ry="10" fill="#000" opacity=".3"/>
+        <path d="M20 96 Q 24 74 50 71 L 150 64 Q 178 64 177 86 Q 175 100 148 102 L 48 110 Q 24 110 20 96 Z" fill="url(#a-tempura)"/>
+        <path d="M30 88 Q 100 74 170 72" stroke="#f3d9a8" stroke-width="3" fill="none" opacity=".7"/>
+        <circle cx="52" cy="72" r="3.4" fill="#ffe08a"/><circle cx="96" cy="66" r="3" fill="#ffe08a"/><circle cx="140" cy="64" r="3.4" fill="#ffe08a"/>
+        <path d="M32 104 q 68 18 138 -6" stroke="#c9722f" stroke-width="3.4" fill="none" opacity=".75" stroke-linecap="round"/>
+      </svg></div>
+      <h3>King Dragon Roll</h3>
+      <p>Tempura-Garnele, Unagi und Avocado unter goldener Sauce — der König der Karte.</p>
+      <span class="pr">€ 16,90</span>
+    </article>
+    <article class="dragon glass red">
+      <span class="dj">赤</span>
+      <div class="art"><svg viewBox="0 0 200 150">
+        <ellipse cx="100" cy="132" rx="80" ry="10" fill="#000" opacity=".3"/>
+        <path d="M20 96 Q 24 74 50 71 L 150 64 Q 178 64 177 86 Q 175 100 148 102 L 48 110 Q 24 110 20 96 Z" fill="url(#a-tuna)"/>
+        <path d="M30 88 Q 100 74 170 72" stroke="#f2a3ad" stroke-width="3" fill="none" opacity=".6"/>
+        <path d="M46 74 q 8 12 3 24 M86 71 q 8 12 3 24 M126 68 q 8 12 3 24" stroke="#f2a3ad" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55"/>
+      </svg></div>
+      <h3>Red Dragon Roll</h3>
+      <p>Thunfisch über Spicy-Salmon-Kern, Sriracha-Mayo und Ikura — Feuer in sechs Bissen.</p>
+      <span class="pr">€ 15,90</span>
+    </article>
+    <article class="dragon glass green">
+      <span class="dj">緑</span>
+      <div class="art"><svg viewBox="0 0 200 150">
+        <ellipse cx="100" cy="132" rx="80" ry="10" fill="#000" opacity=".3"/>
+        <path d="M20 96 Q 24 74 50 71 L 150 64 Q 178 64 177 86 Q 175 100 148 102 L 48 110 Q 24 110 20 96 Z" fill="url(#a-avocado)"/>
+        <path d="M30 88 Q 100 74 170 72" stroke="#d7e6b8" stroke-width="3" fill="none" opacity=".7"/>
+        <ellipse cx="60" cy="86" rx="7" ry="4" fill="#5d7a3a" opacity=".5"/><ellipse cx="104" cy="82" rx="7" ry="4" fill="#5d7a3a" opacity=".5"/><ellipse cx="146" cy="79" rx="7" ry="4" fill="#5d7a3a" opacity=".5"/>
+      </svg></div>
+      <h3>Green Dragon Roll</h3>
+      <p>Avocado-Schuppen über Ebi-Tempura, Teriyaki-Glasur und Sesam — elegant und mild.</p>
+      <span class="pr">€ 14,90</span>
+    </article>
+  </div>
+</section>
+
+<!-- MAKI MENU -->
+<section id="maki">
+  <span class="label">Klassiker</span>
+  <h2>Maki &amp; Rolls</h2>
+  <div id="mrows">
+    <div class="mrow"><div><h3>Sake Maki</h3><p class="d">Lachs, Reis, Nori — 6 Stück</p></div><span class="p">€ 5,90</span></div>
+    <div class="mrow"><div><h3>Tuna Maki</h3><p class="d">Thunfisch, klassisch — 6 Stück</p></div><span class="p">€ 6,20</span></div>
+    <div class="mrow"><div><h3>Kappa Maki</h3><p class="d">Gurke, Sesam — 6 Stück</p></div><span class="p">€ 4,50</span></div>
+    <div class="mrow"><div><h3>Kani Maki</h3><p class="d">Surimi, Reis, Nori — 6 Stück</p></div><span class="p">€ 5,50</span></div>
+    <div class="mrow"><div><h3>Avocado Maki</h3><p class="d">Avocado, Sesam — 6 Stück</p></div><span class="p">€ 4,90</span></div>
+    <div class="mrow"><div><h3>Unagi Maki</h3><p class="d">Gegrillter Aal, Unagi-Sauce — 6 Stück</p></div><span class="p">€ 7,20</span></div>
+    <div class="mrow"><div><h3>Fila Roll</h3><p class="d">Lachs, Frischkäse, Avocado — 8 Stück</p></div><span class="p">€ 11,90</span></div>
+    <div class="mrow"><div><h3>California Unagi</h3><p class="d">Aal, Avocado, Masago — 8 Stück</p></div><span class="p">€ 12,90</span></div>
+    <div class="mrow"><div><h3>Sushi Ebi Spicy</h3><p class="d">Garnele, Spicy-Mayo — 8 Stück</p></div><span class="p">€ 13,90</span></div>
+  </div>
+  <p class="foot">Sushi-Boxen für zwei und mehr — <b>ab € 45</b>. Die komplette Karte findest du auf <b>atelier-of-taste.de</b>. Preise können je nach Plattform leicht abweichen.</p>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <span class="label">Besuch uns</span>
+  <h2>Köln, zweimal</h2>
+  <div class="cardz">
+    <div class="icard glass"><p class="k">Rodenkirchen</p>
+      <p class="v">Friedrich-Ebert-Str. 31<small>50996 Köln &middot; +49 221 709 919 00</small></p></div>
+    <div class="icard glass"><p class="k">Öffnungszeiten</p>
+      <p class="v">Mo–Fr 15:00 – 21:45<small>Sa &amp; So 12:00 – 21:45</small></p></div>
+    <div class="icard glass"><p class="k">Lieferung</p>
+      <p class="v"><span class="gold">Kostenlos</span> geliefert<small>Lieferando &middot; Uber Eats &middot; Abholung m&ouml;glich</small></p></div>
+    <div class="icard glass"><p class="k">Bewertung</p>
+      <p class="v"><span class="stars">★★★★</span>&nbsp;4,3<small>140+ Bewertungen auf Lieferando</small></p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div id="cta-glow"></div>
+  <h2>Hunger?<br><em>Ein Klick</em> genügt.</h2>
+  <p class="sub">Frisch gerollt in Rodenkirchen, in 30–45 Minuten bei dir. Sushi and more&hellip;</p>
+  <a id="cta-btn" class="glass" href="https://atelier-of-taste.de/" target="_blank" rel="noopener">
+    <span class="t">Jetzt bestellen</span><span class="a">→</span>
+  </a>
+  <div class="links">
+    <a href="https://www.instagram.com/atelier_of_taste_/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://atelier-of-taste.de/pages/kontakt" target="_blank" rel="noopener">Kontakt</a>
+  </div>
+  <p class="fine">Atelier of Taste &middot; Sushi and more&hellip;<br>Konzept-Demo &middot; Scrollytelling Case Study</p>
+</section>
+
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+
+<script>/*__GSAP__*/</script>
+<script>/*__SCROLLTRIGGER__*/</script>
+<script>/*__LENIS__*/</script>
+<script>/*__APP__*/</script>
